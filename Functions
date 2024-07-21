@@ -12,3 +12,4 @@
 ]]
 
 --19:00 release 
+print("checking if i didnt break auto exec lol")
