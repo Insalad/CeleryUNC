@@ -399,10 +399,7 @@ local suc, rec = pcall(function()
 		end) 
 		if not suc then warn("[ SALAD ]: isscriptable failed: "..tostring(rec)) end 
 	
-		local suc, rec = pcall(function()
-			local lz4lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Insalad/libs/main/lz4"))() -- lz4decompress fix because celery's one is broken 
-		end) 
-		if not suc then warn("[ SALAD ]: lz4lib failed to load: "..tostring(rec)) end 
+		local lz4lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Insalad/libs/main/lz4"))() -- lz4decompress fix because celery's one is broken 
 	
 		local suc, rec = pcall(function()
 			getgenv().lz4compress = function(data)
