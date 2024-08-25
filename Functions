@@ -9,7 +9,6 @@
    -salad: Maintainer of Salad's Celery Functions
    -carot: Developer of Salad's Celery Functions ( helped on the RENC support )
 ]]
-
 local Converted = {
 	["_FuncsGUI"] = Instance.new("ScreenGui");
 	["_Thing"] = Instance.new("Frame");
@@ -184,7 +183,11 @@ local function functionscript()
     end
 	progressupd()
 	local functionsloaded = false
-	label.Text = "Welcome back "..game.Players.LocalPlayer.Name..", functions are loading, please wait"
+	if breaker then 
+		label.Text = "Welcome back, functions are loading, please wait"
+    else 
+		label.Text = "Welcome back "..game:GetService("Players").LocalPlayer.Name..", functions are loading, please wait"
+	end
 	progressupd() 
 
 	getgenv().identifyexecutor = function()
@@ -227,7 +230,7 @@ local function functionscript()
 		end
 	end
 	
-	-- hidden properties are from another script but still they're shit 
+	-- hidden properties are absolute shit 
 	local hiddenpropr = {}
 	
 	getgenv().gethiddenproperty = function(instance, property) 
@@ -251,7 +254,7 @@ local function functionscript()
 	--this is temp ( and also basically useless rn ) still, better than nothing ig?
 	getgenv().getsenv = function(scrpt)
 		local env = getrenv()
-		setmetatable(env, { __index = scrpt }) 
+		--setmetatable(env, { __index = scrpt })  no
 		env.script = scrpt
 		return env
 	end	
@@ -502,7 +505,7 @@ local function functionscript()
 	end, function()
 		assert(getgenv().getaffiliateid() == "salad-aff0", "getaffiliateid function test failed")
 	end)
-	
+
 	check("getplayer", function(name: string)
 		return not name and getgenv().getplayers()["LocalPlayer"] or getgenv().getplayers()[name]
 	end)
@@ -840,7 +843,7 @@ local function functionscript()
 	-- RENC end
 
 	-- i added saveinstance and a decompiler for the script devs since celery doesnt have 1 for now
-	
+
 	getgenv().saveinstance = function() -- https://scriptblox.com/script/Universal-Script-Universal-Syn-Saveinstance-14624
 		local Params = {
 			RepoURL = "https://raw.githubusercontent.com/luau/SynSaveInstance/main/", 
